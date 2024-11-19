@@ -30,23 +30,6 @@ export const getMovie = (args) => {
  });
 };
 
-export const getUpcomingMovie = (args) => {
-    // console.log(args)
-    const [, idPart] = args.queryKey;
-    const { id } = idPart;
-    return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    ).then((response) => {
-      if (!response.ok) {
-        throw new Error(response.json().message);
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      throw error
-   });
-  };
-
   export const getUpcomingMovies = () => {
     return fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
@@ -104,3 +87,19 @@ export const getUpcomingMovie = (args) => {
         return json.results;
       });
   };
+
+  export const getPopularMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      return response.json();
+    })
+    .catch((error) => {
+       throw error
+    });
+  };
+  
+  

@@ -4,12 +4,12 @@ Name: Adam Thompson
 
 ## Overview.
 
-[A brief statement on the content of this repository.]
+This is a Node.js movie app using the TMDB API.
 
 ### Features.
 [ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
  
-+ Feature 1
++ Playlist page showing upcoming movies on the users watchlist
 + Feature 2
 + Feature 3
 + etc
@@ -23,7 +23,6 @@ Name: Adam Thompson
 
 [ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
 
-e.g.
 + Discover list of movies - discover/movie
 + Movie details - movie/:id
 + Movie genres = /genre/movie/list
