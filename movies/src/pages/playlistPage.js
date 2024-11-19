@@ -5,7 +5,7 @@ import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner'
 import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
-import WriteReview from "../components/cardIcons/writeReview";
+
 
 const PlaylistPage = () => {
     const {playlist: movieIds } = useContext(MoviesContext);
@@ -41,7 +41,6 @@ const PlaylistPage = () => {
           return (
             <>
               <RemoveFromPlaylist movie={movie} />
-              <WriteReview movie={movie} />
             </>
           );
         }}
