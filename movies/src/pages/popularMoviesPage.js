@@ -17,7 +17,12 @@ const PopularMoviesPage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>
   }  
-  const movies = data.results;
+  
+  const movies = data.results.map((movie, index) => ({
+    ...movie,
+    rank: index + 1, // Assign rank based on index (1-based)
+  }));
+  
 
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
@@ -26,12 +31,20 @@ const PopularMoviesPage = (props) => {
 
   return (
     <PageTemplate
-        title="Popular Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
+      title="Popular Movies"
+      movies={movies}
+      action={(movie) => {
+        return (
+          <>
+            <div>
+              <span>Rank #{movie.rank} </span>
+            </div>
+            <AddToFavoritesIcon movie={movie} />
+          </>
+        );
+      }}
     />
   );
 };
+
 export default PopularMoviesPage;
