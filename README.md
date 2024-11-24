@@ -4,20 +4,21 @@ Name: Adam Thompson
 
 ## Overview.
 
-This is a Node.js movie app using the TMDB API.
+This is a Node.js movie app using the TMDB API. It contains pages showing information such as popular, upcoming and top-rated movies, along with information about those movies.
 
 ### Features.
 [ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
  
 + Playlist page showing upcoming movies on the users watchlist
-+ Feature 2
-+ Feature 3
-+ etc
-+ etc
++ Ability to change page at bottom of each page using Pagination
++ Ability to click on the actors credited in movies, bringing the user to a google search of them
++ Top-rated movies page with ranks
++ Popular movies page with ranks
 
 ## Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
++ Navigate to /react-movie-labs/movies
++ Type "npm start" in terminal
 
 ## API endpoints.
 
@@ -26,20 +27,21 @@ This is a Node.js movie app using the TMDB API.
 + Discover list of movies - discover/movie
 + Movie details - movie/:id
 + Movie genres = /genre/movie/list
++ Popular movies = /movie/popular
++ Upcoming movies = /movie/upcoming
++ Top-rated movies = /movie/top_rated
++ Movie credits = /movie/credits
 
 ## Routing.
 
 [ List the __new routes__ supported by your app and state the associated page.]
 
-+ /blogs - displays all published blogs.
-+ /blogs/:id - displays a particular blog.
-+ /blogs/:id/comments - detail view of a particular blog and its comments.
-+ etc.
-
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
++ /movies/playlist - Shows movies that were added to the playlist
++ /movies/popular - Shows popular movies with ranking
++ /movies/topRated - Shows top-rated movies with ranking
 
 ## Independent learning (If relevant).
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
++ Pagination - This was used to display a page count at the bottom of each page and allow the user to change page
++ Added Rankings to popular and top rated movies, used the TMDB array for these to rank them as they were already sorted. 
++ Added links to Google search pages for the actors using the chips for the credits
