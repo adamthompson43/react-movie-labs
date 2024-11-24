@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { getMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import Pagination from "@mui/material/Pagination";
 
 
 const HomePage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const {  data, error, isLoading, isError }  = useQuery(
+    ['discover', currentPage], // passes current page as part of query key
+    () => getMovies(currentPage),
+    { keepPreviousData: true}
+  );
 
   if (isLoading) {
     return <Spinner />
@@ -24,14 +31,31 @@ const HomePage = (props) => {
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
 
+  const handlePageChange = (event, page) =>
+    setCurrentPage(page);
+
   return (
-    <PageTemplate
+    <div>
+      <PageTemplate
         title="Discover Movies"
         movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
+        action={(movie) => <AddToFavoritesIcon movie={movie} />}
+      />
+
+      {/* Pagination Component */}
+      <Pagination
+        count={data.total_pages} // Set total pages from API response
+        page={currentPage} // Current page number
+        onChange={handlePageChange} // Update current page when user changes
+        color="primary"
+        sx={{
+          mt: 4, // Margin top for spacing
+          display: "flex",
+          justifyContent: "center",
         }}
-    />
+      />
+    </div>
   );
 };
+
 export default HomePage;
