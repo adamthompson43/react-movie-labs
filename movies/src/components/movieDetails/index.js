@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -8,7 +8,8 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
+import MovieReviews from "../movieReviews";
+import { getMovieCredits } from "../../api/tmdb-api";
 
 
 
@@ -22,8 +23,21 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie }) => {  
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [credits, setCredits] = useState([]) // stores cast data
+
+  useEffect(() => {
+    const fetchCredits = async () => {
+      try {
+        const data = await getMovieCredits(movie.id); 
+        setCredits(data.cast.slice(0, 10)); // limit to 10 cast members to save space
+      } catch (error) {
+        console.error("Error fetching credits:", error);
+      }
+    };
+    fetchCredits();
+  }, [movie.id]);
 
   return (
     <>
@@ -48,6 +62,9 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
+
+
+
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} 
         label={`${movie.runtime} min.`} 
@@ -58,7 +75,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         />
         <Chip
           icon={<StarRate />}
-          label={`${movie.vote_average} (${movie.vote_count}`}
+          label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
@@ -72,6 +89,25 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Cast" sx={{...chip}} color="primary" />
+        </li>
+        {credits.map((castMember) => (
+          <li key={castMember.id}>
+            <Chip 
+              label={castMember.name} 
+              sx={{...chip}} 
+              variant="outlined" 
+            />
+          </li>
+        ))}
+      </Paper>
+
       <Fab
         color="secondary"
         variant="extended"
