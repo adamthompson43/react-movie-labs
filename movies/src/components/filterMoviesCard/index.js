@@ -50,6 +50,10 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
+  const handleYearChange = (e) => {
+    handleChange(e, "year", e.target.value);
+  };
+
   return (
     <Card 
       sx={{
@@ -88,6 +92,15 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        <TextField
+          sx={{ ...formControl }}
+          id="year-filter"
+          label="Year "
+          type="text"
+          variant="filled"
+          value={props.yearFilter}
+          onChange={handleYearChange}
+        />
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}
