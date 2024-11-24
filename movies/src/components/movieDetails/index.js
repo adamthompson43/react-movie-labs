@@ -5,6 +5,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import StarRate from "@mui/icons-material/StarRate";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
@@ -70,6 +71,10 @@ const MovieDetails = ({ movie }) => {
         label={`${movie.runtime} min.`} 
         />
         <Chip
+          icon={<PointOfSaleIcon />}
+          label={`${movie.budget.toLocaleString()}`}
+        />
+        <Chip
           icon={<MonetizationIcon />}
           label={`${movie.revenue.toLocaleString()}`}
         />
@@ -100,7 +105,7 @@ const MovieDetails = ({ movie }) => {
         {credits.map((castMember) => (
           <li key={castMember.id}>
             <a
-              href={`https://www.google.com/search?q=${encodeURIComponent(castMember.name)}`}
+              href={`https://www.google.com/search?q=${encodeURIComponent(castMember.name)}`} // link to google seach of cast member
               target="_blank"
               rel="noopener norefferer"
               style={{ textDecoration: "none" }} // removed the underline from hyperlink
