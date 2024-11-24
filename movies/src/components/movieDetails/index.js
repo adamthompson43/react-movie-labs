@@ -99,11 +99,19 @@ const MovieDetails = ({ movie }) => {
         </li>
         {credits.map((castMember) => (
           <li key={castMember.id}>
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent(castMember.name)}`}
+              target="_blank"
+              rel="noopener norefferer"
+              style={{ textDecoration: "none" }} // removed the underline from hyperlink
+              >
             <Chip 
               label={castMember.name} 
               sx={{...chip}} 
               variant="outlined" 
+              clickable
             />
+            </a>
           </li>
         ))}
       </Paper>
