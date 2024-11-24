@@ -43,9 +43,15 @@ const SiteHeader = ({ history }) => {
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }}>
-            TMDB Client
-          </Typography>
+            <Button
+              color="inherit"
+              onClick={() => navigate("/")}
+              sx={{ textTransform: "none" }}
+              >
+              <Typography variant="h4" sx={{ flexGrow: 1 }}>
+              TMDB Client
+              </Typography>
+            </Button>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             All you ever wanted to know about Movies!
           </Typography>
