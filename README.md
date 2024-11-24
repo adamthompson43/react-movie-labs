@@ -34,8 +34,6 @@ This is a Node.js movie app using the TMDB API. It contains pages showing inform
 
 ## Routing.
 
-[ List the __new routes__ supported by your app and state the associated page.]
-
 + /movies/playlist - Shows movies that were added to the playlist
 + /movies/popular - Shows popular movies with ranking
 + /movies/topRated - Shows top-rated movies with ranking
