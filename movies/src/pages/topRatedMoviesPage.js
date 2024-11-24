@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getPopularMovies } from "../api/tmdb-api";
+import { getTopRatedMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
@@ -8,13 +8,13 @@ import Pagination from "@mui/material/Pagination";
 import { Typography } from "@mui/material";
 
 
-const PopularMoviesPage = (props) => {
+const TopRatedMoviesPage = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1)
 
   const {  data, error, isLoading, isError }  = useQuery(
-    ['popularMovies', currentPage],
-     () => getPopularMovies(currentPage),
+    ['topRatedMovies', currentPage],
+     () => getTopRatedMovies(currentPage),
      { keepPreviousData: true }
     )
 
@@ -28,7 +28,7 @@ const PopularMoviesPage = (props) => {
   
   const movies = data.results.map((movie, index) => ({
     ...movie,
-    rank: index + 1, // Assign rank based on index, popular movies are already sorted by popularity in array
+    rank: index + 1, // Assign rank based on index, top rated movies are already sorted in array
   }));
 
   const handlePageChange = (event, page) =>
@@ -43,7 +43,7 @@ const PopularMoviesPage = (props) => {
   return (
     <div>
       <PageTemplate
-        title="Popular Movies"
+        title="Top Rated Movies"
         movies={movies}
         action={(movie) => {
           return (
@@ -73,4 +73,4 @@ const PopularMoviesPage = (props) => {
 };
   
 
-export default PopularMoviesPage;
+export default TopRatedMoviesPage;
