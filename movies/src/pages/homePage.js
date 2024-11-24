@@ -14,7 +14,7 @@ const HomePage = (props) => {
   const {  data, error, isLoading, isError }  = useQuery(
     ['discover', currentPage], // passes current page as part of query key
     () => getMovies(currentPage),
-    { keepPreviousData: true}
+    { keepPreviousData: true }
   );
 
   if (isLoading) {
@@ -42,14 +42,13 @@ const HomePage = (props) => {
         action={(movie) => <AddToFavoritesIcon movie={movie} />}
       />
 
-      {/* Pagination Component */}
       <Pagination
-        count={data.total_pages} // Set total pages from API response
-        page={currentPage} // Current page number
-        onChange={handlePageChange} // Update current page when user changes
+        count={data.total_pages} 
+        page={currentPage} 
+        onChange={handlePageChange} 
         color="primary"
         sx={{
-          mt: 4, // Margin top for spacing
+          mt: 4, 
           display: "flex",
           justifyContent: "center",
         }}
