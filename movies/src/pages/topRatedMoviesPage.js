@@ -28,7 +28,7 @@ const TopRatedMoviesPage = (props) => {
   
   const movies = data.results.map((movie, index) => ({
     ...movie,
-    rank: index + 1, // Assign rank based on index, top rated movies are already sorted in array
+    rank: index + 1 + (currentPage - 1) * 20, // sets rank of movie, added workaround to movie showing wrong rank when not on page 1
   }));
 
   const handlePageChange = (event, page) =>
